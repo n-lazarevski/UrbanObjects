@@ -1,0 +1,20 @@
+﻿@model ViewImagesViewModel
+
+@{
+    ViewData["Title"] = Model.subcategory.Name + " images";
+}
+
+<h1 class="fw-light text-center text-lg-start mt-4 mb-0">@Model.subcategory.Name gallery</h1>
+
+<hr class="mt-2 mb-5">
+<div class="row text-center text-lg-start">
+    @foreach (var photo in Model.photos)
+    {
+        <div class="col-lg-3 col-md-4 col-6">
+            <span class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="~/images/@photo.PhotoPath" alt="">
+            </span>
+        </div>
+    }
+
+</div>

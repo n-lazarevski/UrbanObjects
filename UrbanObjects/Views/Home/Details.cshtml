@@ -1,0 +1,55 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = Model.Name;
+    var subcategories = Model.Subcategories;
+}
+
+<h1>@Model.Name</h1>
+<a asp-action="AddSubcategory" asp-controller="Home" asp-route-categoryId="@Model.Id"
+   class="btn btn-primary">Add subcategory</a>
+<div>
+    @for (int i = 0; i < subcategories.Count; i++)
+    {
+        <div class="card mt-2">
+            <div class="card-body">
+                <h3 class="card-title">
+                    @subcategories[i].Name
+                </h3>
+                <hr />
+                @subcategories[i].Description
+                <div style="display:none" id="fileViewer_@subcategories[i].Id">
+                    <embed src="~/documents/@subcategories[i].FilePath" style="width:100%; height:1200px"/> <br />
+                    <a href="#/" onclick="ViewFile(@subcategories[i].Id, false)">Close file</a>
+                </div>
+                <span id="fileLink_@subcategories[i].Id">
+                    <br /><a href="#/" onclick="ViewFile(@subcategories[i].Id, true)">Learn more</a>
+                </span>
+            </div>
+            <div class="card-footer d-flex">
+                <a asp-action="ViewImages" asp-route-subcategoryId="@subcategories[i].Id" 
+                        class="btn btn-primary">View images</a>
+                <form method="post">
+                    <span class="mx-3" id="confirmDeleteSpan_@subcategories[i].Id" style="display:none">
+                        <span>Are you sure you want to delete</span>
+                        <button type="submit" asp-action="DeleteSubcategory" asp-route-id="@subcategories[i].Id"
+                                class="btn btn-danger">
+                            Yes
+                        </button>
+                        <a href="#/" class="btn btn-primary" onclick="ConfirmDelete('@subcategories[i].Id', false)">No</a>
+                    </span>
+
+                    <span class="mx-3" id="deleteSpan_@subcategories[i].Id">
+                        <a href="#/" class="btn btn-danger" onclick="ConfirmDelete('@subcategories[i].Id', true)">Delete</a>
+                    </span>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+<a asp-action="Categories" asp-controller="Home" class="btn btn-outline-info mt-5">Go Back</a>
+
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}

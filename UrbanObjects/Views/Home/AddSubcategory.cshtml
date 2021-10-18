@@ -1,0 +1,29 @@
+﻿@model CreateSubcategoryViewModel
+
+@{ 
+    ViewData["Title"] = "Add Subcategory";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <span hidden>@Model.CategoryId</span>
+    <div>
+        <label asp-for="Name" class="col-form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Description" class="col-form-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div><br />
+    <div>
+        <label asp-for="FilePath"></label><br />
+        <input asp-for="FilePath" class="form-control-file"/>
+    </div><br />
+    <div>
+        <label asp-for="Photos"></label><br />
+        <input multiple asp-for="Photos" class="form-control-file" />
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+</form>

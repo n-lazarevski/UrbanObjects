@@ -1,0 +1,16 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Not Found";
+}
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h4>404 Not Found Error: </h4>
+    <hr />
+    <h5>
+        Category with id = @Model cannot be found
+    </h5>
+</div>
+<a asp-controller="home" asp-action="categories" class="btn btn-outline-success">
+    Click here to see the list of all categories
+</a>

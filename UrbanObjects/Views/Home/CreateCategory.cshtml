@@ -1,0 +1,16 @@
+﻿@model CreateCategoryViewModel
+
+@{ 
+    ViewData["Title"] = "Create Category";
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="col-form-label"></label>
+        <input asp-for="Name" class="form-control" style="width:20rem"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Categories" asp-controller="home" class="btn btn-danger">Cancel</a>
+</form>

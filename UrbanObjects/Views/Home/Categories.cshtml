@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Category>
+
+@{ 
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+<a asp-action="CreateCategory" asp-controller="home" class="btn btn-primary">Add New Category</a>
+<div class="d-flex flex-wrap">
+    @foreach (var category in Model)
+    {
+        <div class="card my-2 mr-3" style="width:48%">
+            <div class="card-header">
+                <h3>@category.Name</h3>                
+            </div>
+            <div class="card-body d-flex align-items-center">
+                <a asp-action="Details" asp-route-id="@category.Id"
+                   class="btn btn-primary m-1">View more</a>
+                <form asp-action="DeleteCategory" asp-route-id="@category.Id" method="post">
+                    <span class="mx-3" id="confirmDeleteSpan_@category.Id" style="display:none">
+                        <span>Are you sure you want to delete</span>
+                        <button type="submit" asp-action="DeleteCategory" asp-route-id="@category.Id"
+                                class="btn btn-danger">
+                            Yes
+                        </button>
+                        <a href="#/" class="btn btn-primary" onclick="ConfirmDelete('@category.Id', false)">No</a>
+                    </span>
+
+                    <span class="mx-3" id="deleteSpan_@category.Id">
+                        <a href="#/" class="btn btn-danger" onclick="ConfirmDelete('@category.Id', true)">Delete</a>
+                    </span>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{ 
+    <script src="~/js/site.js"></script>
+}

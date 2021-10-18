@@ -1,0 +1,16 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Statistics</h1>
+    <hr />
+</div>
+<div>
+    <h3>Categories: @Model.categoriesCount</h3>
+    <h3>Subcategories: @Model.subcategoriesCount</h3>
+    <h3>Photos: @Model.photosCount</h3>
+</div><br />
+<a asp-action="categories" class="btn btn-outline-success">View Categories</a>
