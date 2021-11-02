@@ -1,0 +1,15 @@
+﻿@model AddImagesViewModel
+
+@{ 
+    ViewData["Title"] = "Add Images";
+}
+
+<h2>Add one or more images</h2>
+<form method="post" enctype="multipart/form-data">
+    <span hidden>@Model.SubcategoryId</span>
+    <div>
+        <label asp-for="NewPhotos" class="col-form-label"></label>
+        <input multiple asp-for="NewPhotos" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Images</button>
+</form>

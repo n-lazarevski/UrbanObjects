@@ -13,6 +13,21 @@ namespace UrbanObjects.Models
         {
             this.context = context;
         }
+
+        public Photo Add(Photo photo)
+        {
+            context.Photos.Add(photo);
+            context.SaveChanges();
+            return photo;
+        }
+
+        public List<Photo> AddPhotos(List<Photo> photos)
+        {
+            context.Photos.AddRange(photos);
+            context.SaveChanges();
+            return photos;
+        }
+
         public IEnumerable<Photo> GetAllPhotos()
         {
             return context.Photos;

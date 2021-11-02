@@ -128,21 +128,13 @@ namespace UrbanObjects.Controllers
             if (ModelState.IsValid)
             {
                 string fileName = ProcessUploadedFile(model.FilePath, "documents");
-                List<Photo> photos = new List<Photo>();
-                foreach (IFormFile photo in model.Photos)
-                {
-                    photos.Add(new Photo
-                    {
-                        PhotoPath = ProcessUploadedFile(photo, "images")
-                    });
-                }
+                
                 var category = categoryRepository.GetCategory(model.CategoryId);
                 var subcategory = new Subcategory
                 {
                     Name = model.Name,
                     Description = model.Description,
-                    FilePath = fileName,
-                    Photos = photos
+                    FilePath = fileName
                 };
 
                 category.Subcategories.Add(subcategory);
@@ -162,13 +154,44 @@ namespace UrbanObjects.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewImages(int subcategoryId)
+        public IActionResult Images(int subcategoryId)
         {
             ViewImagesViewModel model = new ViewImagesViewModel
             {
                 subcategory = subcategoryRepository.GetSubcategory(subcategoryId),
                 photos = photoRepository.GetPhotosFromSubcategory(subcategoryId).ToList()
             };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddImages(int subcategoryId)
+        {
+            AddImagesViewModel model = new AddImagesViewModel
+            {
+                SubcategoryId = subcategoryId
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddImages(AddImagesViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                List<Photo> newPhotos = new List<Photo>();
+                foreach(IFormFile photo in model.NewPhotos)
+                {
+                    newPhotos.Add(new Photo
+                    {
+                        SubcategoryId = model.SubcategoryId,
+                        PhotoPath = ProcessUploadedFile(photo, "images")
+                    });
+                }
+
+                photoRepository.AddPhotos(newPhotos);
+                return RedirectToAction("Images", new { subcategoryId = model.SubcategoryId });
+            }
             return View(model);
         }
 

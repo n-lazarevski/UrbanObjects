@@ -4,8 +4,11 @@
     ViewData["Title"] = Model.subcategory.Name + " images";
 }
 
-<h1 class="fw-light text-center text-lg-start mt-4 mb-0">@Model.subcategory.Name gallery</h1>
-
+<div class="d-flex justify-content-between align-items-end">
+    <h1 class="fw-light text-center text-lg-start mt-4 mb-0">@Model.subcategory.Name gallery</h1>
+    <a asp-action="AddImages" asp-route-subcategoryId="@Model.subcategory.Id"
+       class="btn btn-primary">Add Images</a>
+</div>
 <hr class="mt-2 mb-5">
 <div class="row text-center text-lg-start">
     @foreach (var photo in Model.photos)
@@ -16,5 +19,4 @@
             </span>
         </div>
     }
-
 </div>

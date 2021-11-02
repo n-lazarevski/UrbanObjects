@@ -18,7 +18,5 @@ namespace UrbanObjects.ViewModels
         [Required(ErrorMessage = "Attach a document")]
         [Display(Name = "Description document")]
         public IFormFile FilePath { get; set; }
-        [Required(ErrorMessage = "Upload one or more photos")]
-        public List<IFormFile> Photos { get; set; }
     }
 }

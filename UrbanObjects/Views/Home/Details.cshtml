@@ -27,8 +27,8 @@
                 </span>
             </div>
             <div class="card-footer d-flex">
-                <a asp-action="ViewImages" asp-route-subcategoryId="@subcategories[i].Id" 
-                        class="btn btn-primary">View images</a>
+                <a asp-action="Images" asp-route-subcategoryId="@subcategories[i].Id" 
+                   class="btn btn-primary">View images</a>
                 <form method="post">
                     <span class="mx-3" id="confirmDeleteSpan_@subcategories[i].Id" style="display:none">
                         <span>Are you sure you want to delete</span>

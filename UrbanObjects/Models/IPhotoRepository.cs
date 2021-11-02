@@ -10,5 +10,7 @@ namespace UrbanObjects.Models
         Photo GetPhoto(int id);
         IEnumerable<Photo> GetAllPhotos();
         IEnumerable<Photo> GetPhotosFromSubcategory(int subcategoryId);
+        Photo Add(Photo photo);
+        List<Photo> AddPhotos(List<Photo> photos);
     }
 }
