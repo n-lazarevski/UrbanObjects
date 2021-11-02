@@ -201,6 +201,7 @@ namespace UrbanObjects.Controllers
             if (formFile != null)
             {
                 string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, folder);
+                Directory.CreateDirectory(uploadsFolder);
                 fileName = formFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, fileName);
                 using var fileStream = new FileStream(filePath, FileMode.Create);
