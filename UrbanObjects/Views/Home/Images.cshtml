@@ -14,9 +14,13 @@
     @foreach (var photo in Model.photos)
     {
         <div class="col-lg-3 col-md-4 col-6">
-            <span class="d-block mb-4 h-100">
+            <div class="d-block mb-4 h-100 show-image">
                 <img class="img-fluid img-thumbnail" src="~/images/@photo.PhotoPath" alt="">
-            </span>
+                <form method="post">
+                    <button asp-action="DeleteImage" asp-route-photoId="@photo.Id" 
+                    class="delete btn-outline-danger" type="submit">X</button>
+                </form>
+            </div>
         </div>
     }
 </div>

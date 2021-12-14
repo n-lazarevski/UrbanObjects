@@ -12,5 +12,6 @@ namespace UrbanObjects.Models
         IEnumerable<Photo> GetPhotosFromSubcategory(int subcategoryId);
         Photo Add(Photo photo);
         List<Photo> AddPhotos(List<Photo> photos);
+        Photo Delete(int id);
     }
 }

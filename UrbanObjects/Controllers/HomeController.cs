@@ -195,6 +195,13 @@ namespace UrbanObjects.Controllers
             return View(model);
         }
 
+        public IActionResult DeleteImage(int photoId)
+        {
+            Photo photo = photoRepository.Delete(photoId);
+            int subcategoryId = photo.SubcategoryId;
+            return RedirectToAction("Images", new { subcategoryId = subcategoryId });
+        }
+
         private string ProcessUploadedFile(IFormFile formFile, string folder)
         {
             string fileName = null;

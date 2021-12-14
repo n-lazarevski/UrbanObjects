@@ -42,5 +42,16 @@ namespace UrbanObjects.Models
         {
             return context.Photos.Where<Photo>(p => p.SubcategoryId == subcategoryId);
         }
+
+        public Photo Delete(int id)
+        {
+            Photo photo = context.Photos.Find(id);
+            if (photo != null)
+            {
+                context.Photos.Remove(photo);
+                context.SaveChanges();
+            }
+            return photo;
+        }
     }
 }
